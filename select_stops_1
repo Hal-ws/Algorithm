@@ -1,0 +1,31 @@
+def select_stops(water_stops, capacity):
+    ans = []
+    water_in_bottle = capacity - water_stops[0]
+    i = 0
+    while i < len(water_stops) - 1:
+        for j in range(i + 1, len(water_stops)):
+            if j == len(water_stops) - 1:
+                i = j
+                ans.append(water_stops[j])
+                break
+            if water_stops[j] - water_stops[i] > water_in_bottle:
+                i = j - 1
+                ans.append(water_stops[i])
+                water_in_bottle = capacity
+                break
+            if water_stops[j] - water_stops[i] == water_in_bottle:
+                i = j
+                ans.append(water_stops[i])
+                water_in_bottle = capacity
+                break
+
+    return ans
+
+
+
+# 테스트
+list1 = [1, 4, 5, 7, 11, 12, 13, 16, 18, 20, 22, 24, 26]
+print(select_stops(list1, 4))
+
+list2 = [5, 8, 12, 17, 20, 22, 23, 24, 28, 32, 38, 42, 44, 47]
+print(select_stops(list2, 6))
