@@ -1,0 +1,16 @@
+def sum_in_list(search_sum, sorted_list):
+    min_idx = 0
+    max_idx = len(sorted_list) - 1
+    while min_idx < max_idx:
+        sum = sorted_list[min_idx] + sorted_list[max_idx]
+        if sum == search_sum:
+            return True
+        if sum < search_sum:
+            min_idx += 1
+        else:
+            max_idx -= 1
+    return False
+
+
+print(sum_in_list(15, [1, 2, 5, 6, 7, 9, 11]))
+print(sum_in_list(15, [1, 2, 5, 7, 9, 11]))
